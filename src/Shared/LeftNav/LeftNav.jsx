@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import LeftVeiw from '../LeftVeiw/LeftVeiw';
 
 const LeftNav = () => {
   const [categories, setCategories] = useState([])
@@ -19,6 +20,9 @@ const LeftNav = () => {
           <Link to={`/category/${category.id}`} className='text-decoration-none text-secondary'>{category.name}</Link>
         </p>)
       }
+      </div>
+      <div>
+        <LeftVeiw></LeftVeiw>
       </div>
     </div>
   );
