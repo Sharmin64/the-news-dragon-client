@@ -2,11 +2,10 @@ import moment from 'moment';
 import React from 'react';
 import { Card, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
-import { FaBookmark, FaShareAlt } from 'react-icons/fa';
+import { FaBookmark, FaEye, FaShareAlt } from 'react-icons/fa';
 
 const NewsCard = ({ news }) => {
-  const {_id,title, details,image_url,img,author}=news
+  const {_id,title, details,image_url,img,author,rating,total_view}=news
   return (
     <Card className="mb-4">
       <Card.Header className='d-flex align-items-center'>
@@ -16,8 +15,7 @@ const NewsCard = ({ news }) => {
           <p> <small> {moment(author?.published_date).format("YYYY-MM-D")}</small></p>
         </div>
         <div className='d-flex flex-column gap-3'>
-          <FaBookmark/>
-          <FaShareAlt/>
+          <FaBookmark/> <FaShareAlt/>
 
         </div>
     </Card.Header>
@@ -28,7 +26,14 @@ const NewsCard = ({ news }) => {
        {details.length<250? <>{details}</>: <>{details.slice(0,250)}...<Link to={`/news/${_id}`}>Read More</Link></>}
       </Card.Text>
     </Card.Body>
-    <Card.Footer className="text-muted">2 days ago</Card.Footer>
+      <Card.Footer className="text-muted d-flex">
+        <div className='flex-grow-1'>
+          <span>{rating?.number}</span>
+        </div>
+        <div>
+          <FaEye/> {total_view}
+        </div>
+    </Card.Footer>
   </Card>
   );
 };
